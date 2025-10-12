@@ -122,7 +122,7 @@ profile_logout.addEventListener("mouseout", ()=>{
 
 async function fetchMe() {
   try {
-    const res = await fetch('http://localhost:5001/api/me', {
+    const res = await fetch('https://turing-web-ssgt.vercel.app/api/me', {
       method: 'GET',
       credentials: 'include'
     });
@@ -137,11 +137,11 @@ async function fetchMe() {
       }
     } else {
       // not logged in — redirect to login
-      window.location.href = 'http://localhost:5501/Frontend/login.html';
+      window.location.href = 'https://turing-web-ssgt.vercel.app/Frontend/login.html';
     }
   } catch (err) {
     console.error('fetchMe error', err);
-    window.location.href = 'http://localhost:5501/Frontend/login.html';
+    window.location.href = 'https://turing-web-ssgt.vercel.app/Frontend/login.html';
   }
 }
 
@@ -149,10 +149,10 @@ document.addEventListener('DOMContentLoaded', fetchMe);
 
 // logout example
 async function logout() {
-  await fetch('http://localhost:5001/auth/logout', {
+  await fetch('https://turing-web-ssgt.vercel.app/auth/logout', {
     method: 'POST',
     credentials: 'include'
   });
-  window.location.href = 'http://localhost:5501/Frontend/login.html';
+  window.location.href = 'https://turing-web-ssgt.vercel.app/Frontend/login.html';
 }
 document.querySelector('.profile_logout')?.addEventListener('click', logout);
