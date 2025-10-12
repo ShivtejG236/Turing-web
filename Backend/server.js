@@ -39,4 +39,4 @@ app.use('/api', apiRoutes);
 // healthcheck
 app.get('/', (req, res) => res.send('Backend running'));
 
-app.listen(config.port, () => console.log(`Server listening on https://turing-web-ssgt.vercel.app/`));
+app.listen(config.port, () => console.log(`Server listening on https://turing-web-ssgt.vercel.app/Backend/`));
