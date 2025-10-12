@@ -12,9 +12,8 @@ import apiRoutes from './Routes/api.js';
 
 const app = express();
 
-app.get("/index.html", (req, res) => {
-  res.redirect("https://turing-web-version.vercel.app/Frontend/main.html");
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
 
 app.use(helmet());
 app.use(express.json());
@@ -27,7 +26,7 @@ app.use(rateLimit({
 }));
 
 app.use(cors({
-  origin: config.frontendOrigin,
+  origin: 'https://turing-web-version.vercel.app',
   credentials: true
 }));
 
