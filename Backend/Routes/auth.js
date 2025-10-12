@@ -10,7 +10,7 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 
 // callback
 router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: `${config.frontendOrigin}/Frontend/login.html`, session: false }),
+  passport.authenticate('google', { failureRedirect: `${config.frontendOrigin}/login.html`, session: false }),
   async (req, res) => {
     const profile = req.user;
     const email = profile.emails && profile.emails[0] && profile.emails[0].value;
@@ -47,7 +47,7 @@ router.get('/google/callback',
     });
 
     // redirect to frontend
-    res.redirect(`http://localhost:5501/Frontend/main.html`);
+    res.redirect(`https://turing-web-ssgt.vercel.app/Frontend/main.html`);
   }
 );
 
