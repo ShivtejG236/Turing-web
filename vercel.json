@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "routes": [
     {
-      "src": "/"
+      "src": "/",
       "dest": "/Frontend/login.html"
     }
   ]
