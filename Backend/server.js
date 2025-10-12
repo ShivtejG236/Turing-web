@@ -13,7 +13,7 @@ import apiRoutes from './Routes/api.js';
 const app = express();
 
 app.get("/index.html", (req, res) => {
-  res.redirect("https://turing-web-ssgt.vercel.app/Frontend/main.html");
+  res.redirect("https://turing-web-version.vercel.app/Frontend/main.html");
 });
 
 app.use(helmet());
@@ -39,4 +39,4 @@ app.use('/api', apiRoutes);
 // healthcheck
 app.get('/', (req, res) => res.send('Backend running'));
 
-app.listen(config.port, () => console.log(`Server listening on https://turing-web-ssgt.vercel.app/Backend/`));
+app.listen(config.port, () => console.log(`Server listening on https://turing-web-version.up.railway.app/`));
