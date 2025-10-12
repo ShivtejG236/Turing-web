@@ -35,6 +35,7 @@ app.use(passport.initialize());
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 app.use(express.static("../Frontend"));
+app.use("/", routes);
 
 // healthcheck
 app.get('/', (req, res) => res.send('Backend running'));
