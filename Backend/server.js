@@ -12,7 +12,7 @@ import apiRoutes from './Routes/api.js';
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
 
 app.use(helmet());
@@ -34,8 +34,7 @@ app.use(passport.initialize());
 
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
-app.use(express.static("../Frontend"));
-app.use("/", routes);
+// app.use(express.static("../Frontend"));
 
 // healthcheck
 app.get('/', (req, res) => res.send('Backend running'));
