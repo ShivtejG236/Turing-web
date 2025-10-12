@@ -122,7 +122,7 @@ profile_logout.addEventListener("mouseout", ()=>{
 
 async function fetchMe() {
   try {
-    const res = await fetch('https://turing-web-ssgt.vercel.app/api/me', {
+    const res = await fetch('https://turing-web-ssgt.vercel.app/Backend/api/me', {
       method: 'GET',
       credentials: 'include'
     });
