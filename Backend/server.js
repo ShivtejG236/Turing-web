@@ -37,7 +37,7 @@ app.use(passport.initialize());
 
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
-app.use(express.static("../Frontend"));
+// app.use(express.static("../Frontend"));
 
 
 // healthcheck
