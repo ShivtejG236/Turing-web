@@ -120,39 +120,81 @@ profile_logout.addEventListener("mouseout", ()=>{
         profile_logout.style.boxShadow = "rgba(0, 0, 0, 1) 1px 1px 5px 1.5px";
 })
 
+// Check for token in URL and store it
+function checkURLToken() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+  
+  if (token) {
+    // Store token in localStorage
+    localStorage.setItem('authToken', token);
+    // Clean up URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+}
+
 async function fetchMe() {
   try {
+    // Get token from localStorage
+    const token = localStorage.getItem('authToken');
+    
+    if (!token) {
+      console.log('No token found, redirecting to login');
+      window.location.href = 'https://turing-web-version.vercel.app';
+      return;
+    }
+
     const res = await fetch('https://turing-web-version.up.railway.app/api/me', {
       method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
       credentials: 'include'
     });
+
     if (res.status === 200) {
       const user = await res.json();
-      // Put user data in the UI — example:
+      console.log('User data:', user);
+      
+      // Update UI with user data
       document.querySelector('.profile_pic').src = user.photo || 'Assets/profile.png';
       document.querySelector('.profile_pic').alt = user.displayName || 'User';
-      // maybe show name:
+      
+      // Update greeting
       if (document.querySelector('.greeting')) {
         document.querySelector('.greeting').textContent = `Hello ${user.displayName.split(' ')[0]}!`;
       }
     } else {
-      // not logged in — redirect to login
+      console.log('Auth failed, clearing token and redirecting');
+      localStorage.removeItem('authToken');
       window.location.href = 'https://turing-web-version.vercel.app';
     }
   } catch (err) {
     console.error('fetchMe error', err);
+    localStorage.removeItem('authToken');
     window.location.href = 'https://turing-web-version.vercel.app';
   }
 }
 
-document.addEventListener('DOMContentLoaded', fetchMe);
+document.addEventListener('DOMContentLoaded', () => {
+  checkURLToken();
+  fetchMe();
+});
 
-// logout example
+// logout
 async function logout() {
+  const token = localStorage.getItem('authToken');
+  
   await fetch('https://turing-web-version.up.railway.app/auth/logout', {
     method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    },
     credentials: 'include'
   });
+  
+  localStorage.removeItem('authToken');
   window.location.href = 'https://turing-web-version.vercel.app';
 }
+
 document.querySelector('.profile_logout')?.addEventListener('click', logout);
