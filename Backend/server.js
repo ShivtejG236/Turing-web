@@ -39,4 +39,4 @@ app.use('/api', apiRoutes);
 // healthcheck
 app.get('/', (req, res) => res.send('Backend running'));
 
-app.listen(config.port, () => console.log(`Server listening on https://turing-web-version.up.railway.app/`));
+app.listen(config.PORT, () => console.log(`Server listening on https://turing-web-version.up.railway.app/`));
