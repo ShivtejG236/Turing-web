@@ -52,7 +52,7 @@ router.get('/google/callback', (req, res, next) => {
     });
 
     // redirect to frontend
-    res.redirect('${config.frontendOrigin}/Frontend/main.html`);
+    res.redirect(`${config.frontendOrigin}/Frontend/main.html`);
   }
 );
 
