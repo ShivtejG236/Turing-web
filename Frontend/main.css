@@ -361,9 +361,12 @@ canvas {
     bottom: 0;
     right: 0;
     margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 20px;
     padding-right: 20px;
     height: 50px;
+    max-height: 180px;
     min-width: 60%;
     border-radius: 15px;
     outline: none;
@@ -372,8 +375,13 @@ canvas {
     border: none;
     box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 10px 5px;
     font-size: 16px;
-    resize: none;
     z-index: 10;
+    resize: none;
+    overflow-y: auto;
+    line-height: 1.5;
+}
+.text_box::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
 }
 .send_button {
     position: relative;
@@ -540,11 +548,4 @@ canvas {
 
 .messages::-webkit-scrollbar-thumb:hover {
     background: rgba(100, 150, 255, 0.5);
-}
-
-/* Update text_box to be textarea */
-.text_box {
-    resize: none;
-    overflow-y: auto;
-    line-height: 1.5;
 }
