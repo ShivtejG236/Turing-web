@@ -2,10 +2,10 @@ import OpenAI from 'openai';
 
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPENROUTER_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
   defaultHeaders: {
-    "HTTP-Referer": process.env.FRONTEND_ORIGIN,
-    "X-Title": "Turing AI Assistant",
+    "HTTP-Referer": process.env.FRONTEND_ORIGIN || "https://turing-web-version.vercel.app",
+    "X-Title": "Turing",
   },
 });
 
@@ -20,7 +20,7 @@ export async function getChatCompletion(userMessage, conversationHistory = []) {
     ];
 
     const completion = await openai.chat.completions.create({
-      model: "openai/gpt-3.5-turbo",
+      model: "openai/gpt-oss-20b",
       messages: messages,
       temperature: 0.7,
       max_tokens: 500,
