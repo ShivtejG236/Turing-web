@@ -315,15 +315,13 @@ canvas {
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-52%);
     width: 80%;
     height: 15%;
     margin: 20px;
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    max-height: 75%;
     justify-content: center;
     align-items: center;
     z-index: 10;
@@ -334,10 +332,6 @@ canvas {
     -webkit-backdrop-filter: blur(12px);
     transform-style: preserve-3d;
     transition: transform 0.35s cubic-bezier(0.83, 0, 0.17, 1), box-shadow 0.35s cubic-bezier(0.83, 0, 0.17, 1);
-}
-.chat {
-    display: flex;
-    flex-direction: row;
 }
 .input_mic {
     position: relative;
@@ -476,10 +470,10 @@ canvas {
 
 /* Chat Messages Display Area */
 .messages {
-    position: relative;
-    bottom: 18%;
-    left: 0;
-    /* transform: translateX(-50%); */
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
     width: 75%;
     max-height: 50vh;
     overflow-y: auto;
