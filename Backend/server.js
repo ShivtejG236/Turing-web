@@ -9,6 +9,8 @@ import { config } from './Config/env.js';
 import './Config/passport.js';
 import authRoutes from './Routes/auth.js';
 import apiRoutes from './Routes/api.js';
+import { config } from './Config/env.js';
+console.log('[CONFIG] google config:', config.google);
 
 import path from "path";
 const __dirname = path.resolve();
