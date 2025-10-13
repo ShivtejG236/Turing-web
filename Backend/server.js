@@ -29,14 +29,6 @@ app.use('/api', apiRoutes);
 // healthcheck
 app.get('/', (req, res) => res.send('Backend running'));
 
-// serve frontend *after* everything else
-const frontendPath = path.join(process.cwd(), "../Frontend");
-app.use('/Frontend', express.static(frontendPath));
-
-// only send frontend for non-API routes
-app.get(/^(?!\/(api|auth)\/).*/, (req, res) => {
-  res.sendFile(path.join(frontendPath, "main.html"));
-});
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
