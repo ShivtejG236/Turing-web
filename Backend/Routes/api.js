@@ -1,6 +1,6 @@
 import express from 'express';
 import { requireAuth } from '../middleware/auth.js';
-import { getChatCompletion } from '../../services/openai.js';
+import { getChatCompletion } from '../services/openai.js';
 const router = express.Router();
 
 router.get('/me', requireAuth, (req, res) => {
