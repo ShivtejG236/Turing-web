@@ -479,7 +479,7 @@ canvas {
     transform: translateX(-50%);
     width: 75%;
     max-height: 50vh;
-    overflow-y: auto;
+    overflow-y: hidden;
     margin: 10px;
     padding: 20px;
     border-radius: 15px;
@@ -493,6 +493,7 @@ canvas {
 
 .messages.active {
     display: block;
+    overflow-y: auto;
 }
 
 .message {
