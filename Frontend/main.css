@@ -320,6 +320,7 @@ canvas {
     height: 15%;
     margin: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 10;
@@ -330,6 +331,10 @@ canvas {
     -webkit-backdrop-filter: blur(12px);
     transform-style: preserve-3d;
     transition: transform 0.35s cubic-bezier(0.83, 0, 0.17, 1), box-shadow 0.35s cubic-bezier(0.83, 0, 0.17, 1);
+}
+.chat {
+    display: flex;
+    flex-direction: row;
 }
 .input_mic {
     position: relative;
