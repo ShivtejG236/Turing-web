@@ -217,13 +217,13 @@ function addMessage(content, type = 'user') {
     return messageDiv;
 }
 
-Messages.addEventListener('scroll', ()=>{
-  Messages.classList.remove('no-scrollbar');
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
-    Messages.classList.add('no-scrollbar'); // hide again
-  }, 1000);
-})
+// Messages.addEventListener('scroll', ()=>{
+//   Messages.classList.remove('no-scrollbar');
+//   clearTimeout(scrollTimeout);
+//   scrollTimeout = setTimeout(() => {
+//     Messages.classList.add('no-scrollbar'); // hide again
+//   }, 1000);
+// })
 
 async function sendMessage() {
     const message = messageInput.value.trim();
