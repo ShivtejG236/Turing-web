@@ -6,27 +6,32 @@ import { config } from '../Config/env.js';
 const router = express.Router();
 
 // start OAuth
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google', (req, res, next) => {
+  console.log('[AUTH] GET /auth/google called');
+  next();
+}, passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 // callback
-router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: `https://turing-web-version.vercel.app`, session: false }),
-  async (req, res) => {
-    const profile = req.user;
-    const email = profile.emails && profile.emails[0] && profile.emails[0].value;
-    const id = profile.id;
+router.get('/google/callback', (req, res, next) => {
+  console.log('[AUTH] GET /auth/google/callback called, query:', req.query);
+  next();
+}, passport.authenticate('google', { failureRedirect: config.frontendOrigin, session: false }), async (req, res) => {
+  console.log('[AUTH] passport callback succeeded, user:', req.user && req.user.id);
+  const profile = req.user;
+  const email = profile.emails && profile.emails[0] && profile.emails[0].value;
+  const id = profile.id;
 
-    await db.read();
-    let user = db.data.users.find(u => u.googleId === id || u.email === email);
-    if (!user) {
-      user = {
-        id: `u_${Date.now()}`,
-        googleId: id,
-        displayName: profile.displayName,
-        email,
-        photo: profile.photos && profile.photos[0] && profile.photos[0].value,
-        createdAt: new Date().toISOString()
-      };
+  await db.read();
+  let user = db.data.users.find(u => u.googleId === id || u.email === email);
+  if (!user) {
+    user = {
+      id: `u_${Date.now()}`,
+      googleId: id,
+      displayName: profile.displayName,
+      email,
+      photo: profile.photos && profile.photos[0] && profile.photos[0].value,
+      createdAt: new Date().toISOString()
+    };
       db.data.users.push(user);
       await db.write();
     } else {
@@ -47,7 +52,7 @@ router.get('/google/callback',
     });
 
     // redirect to frontend
-    res.redirect(`https://turing-web-version.vercel.app/Frontend/main.html`);
+    res.redirect('${config.frontendOrigin}/Frontend/main.html`);
   }
 );
 
