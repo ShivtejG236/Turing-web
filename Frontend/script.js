@@ -199,3 +199,95 @@ async function logout() {
 }
 
 document.querySelector('.profile_logout')?.addEventListener('click', logout);
+
+
+// Chat functionality
+const Messages = document.getElementById('Messages');
+const messageInput = document.getElementById('messageInput');
+const sendButton = document.getElementById('sendButton');
+let conversationHistory = [];
+
+function addMessage(content, type = 'user') {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}`;
+    messageDiv.textContent = content;
+    Messages.appendChild(messageDiv);
+    Messages.classList.add('active');
+    Messages.scrollTop = Messages.scrollHeight;
+    return messageDiv;
+}
+
+async function sendMessage() {
+    const message = messageInput.value.trim();
+    
+    if (!message) return;
+    
+    // Add user message to UI
+    addMessage(message, 'user');
+    
+    // Clear input
+    messageInput.value = '';
+    
+    // Show loading message
+    const loadingMsg = addMessage('Thinking...', 'loading');
+    
+    try {
+        const token = localStorage.getItem('authToken');
+        
+        const response = await fetch('https://turing-web-version.up.railway.app/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                message: message,
+                conversationHistory: conversationHistory
+            })
+        });
+        
+        // Remove loading message
+        loadingMsg.remove();
+        
+        if (response.ok) {
+            const data = await response.json();
+            
+            // Add bot response to UI
+            addMessage(data.message, 'bot');
+            
+            // Update conversation history
+            conversationHistory.push(
+                { role: 'user', content: message },
+                { role: 'assistant', content: data.message }
+            );
+            
+            // Keep only last 10 messages in history to avoid token limits
+            if (conversationHistory.length > 20) {
+                conversationHistory = conversationHistory.slice(-20);
+            }
+        } else {
+            addMessage('Sorry, I encountered an error. Please try again.', 'error');
+        }
+    } catch (error) {
+        loadingMsg.remove();
+        console.error('Chat error:', error);
+        addMessage('Failed to send message. Please check your connection.', 'error');
+    }
+}
+
+// Send on button click
+sendButton.addEventListener('click', sendMessage);
+
+// Send on Enter key (Shift+Enter for new line)
+messageInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+    }
+});
+
+// Auto-resize textarea
+messageInput.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 150) + 'px';
+});
