@@ -52,6 +52,7 @@ function draw() {
 }
 draw();
 
+
 let stocks = document.getElementsByClassName("stocks")[0]
 let news = document.getElementsByClassName("news")[0]
 let weather = document.getElementsByClassName("weather")[0]
