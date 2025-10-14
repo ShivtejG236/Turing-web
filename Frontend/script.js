@@ -433,3 +433,7 @@ jane.addEventListener('click', () => {
   tesla.style.boxShadow = "rgba(0,0,0,0) 1px 1px 5px 2px";
   business.style.boxShadow = "rgba(0,0,0,0) 1px 1px 5px 2px";
 });
+
+sendButton.addEventListener('click', () => {
+  newsPanel.classList.remove('active');
+});
