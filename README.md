@@ -19,7 +19,7 @@
 - Secure authentication via **Google OAuth2**  
 - Real-time conversational AI using **OpenAI API**  
 - Multiple interactive modules: **Stock Market, News Feed, Weather Updates, Extensions**  
-- Contemporary design featuring **animations, glassmorphic effects, and custom typography**  
+- Contemporary design featuring **Animations, glassmorphic effects, and custom typography**  
 
 ---
 
