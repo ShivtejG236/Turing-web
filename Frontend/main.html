@@ -11,6 +11,7 @@
     <canvas id="liquid"></canvas>
     <div class="liquid-bg"></div>
 
+    
     <div class="logo">
         <img class="logo_image" src="Assets/logo.png" alt="Turing Logo">
         <div class="logo_text" style="font-family: nevera; font-size: 50px;color: rgba(220, 242, 249, 0.631);">Turing</div>
@@ -18,37 +19,68 @@
 
     <div class="greeting" style="font-family: mile; font-weight: 100; color: rgba(220, 242, 249, 0.584);">Hello BOSS !</div>
 
+    
     <div class="menu">
         <div class="stocks_container">
-            <div class="stocks">
-                <img class="stocks_image" src="Assets/stocks.png" alt="Stocks">
-            </div>
+            <div class="stocks"><img class="stocks_image" src="Assets/stocks.png" alt="Stocks"></div>
             <div class="stocks_text">Stocks</div>
         </div>
         <div class="news_container">
-            <div class="news">
-                <img class="news_image" src="Assets/news.png" alt="News">
-            </div>
+            <div class="news"><img class="news_image" src="Assets/news.png" alt="News"></div>
             <div class="news_text">News</div>
         </div>
         <div class="weather_container">
-            <div class="weather">
-                <img class="weather_image" src="Assets/weather.png" alt="Weather">
-            </div>
+            <div class="weather"><img class="weather_image" src="Assets/weather.png" alt="Weather"></div>
             <div class="weather_text">Weather</div>
         </div>
         <div class="extensions_container">
-            <div class="extensions">
-                <img class="extensions_image" src="Assets/extensions.png" alt="Extensions">
-            </div>
+            <div class="extensions"><img class="extensions_image" src="Assets/extensions.png" alt="Extensions"></div>
             <div class="extensions_text">Extensions</div>
         </div>
     </div>
+    
+    <div class="stocks_panel" id="stocksPanel"></div>
+    
+    <div class="news_panel" id="newsPanel">
+        <div class="news_panel_header">
+            <div class="tech">
+                <img src="Assets/tech.png">
+                <h2>TechCrunch</h2>
+            </div>
+            <div class="apple">
+                <img src="Assets/apple.png">
+                <h2>Apple.inc</h2>
+            </div>
+            <div class="tesla">
+                <img src="Assets/tesla.png">
+                <h2>Tesla</h2>
+            </div>
+            <div class="business">
+                <img src="Assets/business.png">
+                <h2>USA Business Highlights</h2>
+            </div>
+            <div class="jane">
+                <img src="Assets/jane.png">
+                <h2>Jane Street Journal</h2>
+            </div>
+            <button class="news_close" id="newsClose">&times;</button>
+        </div>
+        <div class="news_articles" id="newsArticles">
+            <div class="news_loading">Loading news...</div>
+        </div>
+    </div>
+    
+    <div class="weather_panel" id="weatherPanel"></div>
+    
+    <div class="extensions_panel" id="extensionsPanel"></div>
+
+    
     <div class="profile">
         <img class="profile_pic" src="Assets/profile.png" alt="Profile pic">
         <button class="profile_logout">Logout</button>
     </div>
 
+    
     <div class="messages no-scrollbar" id="Messages"></div>
     <div class="chat_space">
         <div class="input_mic"><img class="mic_image" src="Assets/mic.png" alt="Microphone"></div>
@@ -56,6 +88,7 @@
         <button class="send_button" id="sendButton" style="font-size: 20px; font-family: rale;">Send</button>
     </div>
 
+    
     <div class="liquid_ether"></div>
 
 </body>
