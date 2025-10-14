@@ -311,6 +311,7 @@ const newsButton = document.querySelector('.news');
 
 // Open news Panel
 newsButton.addEventListener('click', async () => {
+  Messages.style.display = 'none';
   newsPanel.classList.add('active');
   await loadNews();
 });
