@@ -40,4 +40,20 @@ router.post('/chat', requireAuth, async (req, res) => {
   }
 });
 
+router.get('/news', requireAuth, async (req, res) => {
+  try {
+    console.log('[NEWS] Fetching top headlines');
+    const result = await getTopHeadlines();
+    
+    if (result.success) {
+      res.json({ articles: result.articles });
+    } else {
+      res.status(500).json({ error: result.error });
+    }
+  } catch (error) {
+    console.error('[NEWS] Unexpected error:', error);
+    res.status(500).json({ error: 'Failed to fetch news' });
+  }
+});
+
 export default router;
