@@ -606,8 +606,8 @@ canvas {
     margin: 10px;
     padding: 15px;
     /* border-bottom: 2px solid rgba(100, 150, 255, 0.3); */
-    background: rgba(255,255,255,0.15);
-    filter: blur(10px);
+    background: rgba(255,255,255,0.05);
+    /* filter: blur(10px); */
     border-radius: 5px;
     box-shadow: rgba(0,0,0,0.25) 1px 1x 5px 2x;
 }
