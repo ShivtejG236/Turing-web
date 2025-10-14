@@ -612,8 +612,8 @@ canvas {
 .news_panel_header h2 {
     font-family: 'rale';
     color: rgba(220, 242, 249, 0.9);
-    font-size: 12px;
-    margin: 2px;
+    font-size: 18px;
+    margin: 5px;
 }
 
 .tech {
@@ -621,9 +621,12 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: transparent;
+    box-shadow: rgba(0,0,0,0.25) 1px 1px 5px 2px;
 }
 .tech img {
     height: 25px;
+    margin: 5px;
 }
 
 .apple {
@@ -632,8 +635,12 @@ canvas {
     justify-content: center;
     align-items: center;
 }
+.apple:hover {
+    opacity: 0.8;
+}
 .apple img {
     height: 25px;
+    margin: 5px;
 }
 
 .tesla {
@@ -644,6 +651,7 @@ canvas {
 }
 .tesla img {
     height: 25px;
+    margin: 5px;
 }
 
 .business {
@@ -654,6 +662,7 @@ canvas {
 }
 .business img {
     height: 25px;
+    margin: 5px;
 }
 
 .jane {
@@ -664,6 +673,7 @@ canvas {
 }
 .jane img {
     height: 25px;
+    margin: 5px;
 }
 
 .news_close {
