@@ -299,3 +299,90 @@ messageInput.addEventListener('input', function() {
     this.style.height = 'auto';
     this.style.height = Math.min(this.scrollHeight, 150) + 'px';
 });
+
+
+
+// News Modal functionality
+const newsPanel = document.getElementById('newsPanel');
+const newsClose = document.getElementById('newsClose');
+const newsArticlesContainer = document.getElementById('newsArticles');
+const newsButton = document.querySelector('.news');
+
+// Open news Panel
+newsButton.addEventListener('click', async () => {
+    newsPanel.classList.add('active');
+    await loadNews();
+});
+
+// Close news Panel
+newsClose.addEventListener('click', () => {
+    newsPanel.classList.remove('active');
+});
+
+// Close on outside click
+newsPanel.addEventListener('click', (e) => {
+    if (e.target === newsPanel) {
+        newsPanel.classList.remove('active');
+    }
+});
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && newsPanel.classList.contains('active')) {
+        newsPanel.classList.remove('active');
+    }
+});
+
+async function loadNews() {
+    newsArticlesContainer.innerHTML = '<div class="news_loading">Loading latest tech news...</div>';
+    
+    try {
+        const token = localStorage.getItem('authToken');
+        
+        const response = await fetch('https://turing-web-version.up.railway.app/api/news', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            displayNews(data.articles);
+        } else {
+            newsArticlesContainer.innerHTML = '<div class="news_loading" style="color: #ff6b6b;">Failed to load news. Please try again.</div>';
+        }
+    } catch (error) {
+        console.error('News fetch error:', error);
+        newsArticlesContainer.innerHTML = '<div class="news_loading" style="color: #ff6b6b;">Network error. Please check your connection.</div>';
+    }
+}
+
+function displayNews(articles) {
+    if (!articles || articles.length === 0) {
+        newsArticlesContainer.innerHTML = '<div class="news_loading">No news articles available.</div>';
+        return;
+    }
+    
+    newsArticlesContainer.innerHTML = articles.map(article => {
+        const date = new Date(article.publishedAt).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        
+        return `
+            <div class="news_article" onclick="window.open('${article.url}', '_blank')">
+                ${article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}" class="news_article_image" onerror="this.style.display='none'">` : ''}
+                <div class="news_article_title">${article.title}</div>
+                ${article.description ? `<div class="news_article_description">${article.description}</div>` : ''}
+                <div class="news_article_meta">
+                    <span class="news_article_author">${article.author || 'TechCrunch'}</span>
+                    <span class="news_article_date">${date}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
