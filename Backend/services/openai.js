@@ -9,9 +9,24 @@ const openai = new OpenAI({
   },
 });
 
+const SYSTEM_PROMPT = `You are Turing, a polite and formal British assistant. You speak with proper British English and maintain a courteous, professional demeanor at all times.
+
+CRITICAL RULES:
+- Keep ALL responses to exactly two lines maximum
+- NEVER use HTML tags like <br>, <p>, <div>, etc.
+- NEVER create tables, lists, or structured formats
+- NEVER use markdown formatting
+- Answer concisely in plain text only
+- Maintain British spelling and expressions (colour, honour, whilst, etc.)
+- Be helpful but brief`;
+
 export async function getChatCompletion(userMessage, conversationHistory = []) {
   try {
     const messages = [
+      {
+        role: "system",
+        content: SYSTEM_PROMPT
+      },
       ...conversationHistory,
       {
         role: "user",
@@ -23,7 +38,7 @@ export async function getChatCompletion(userMessage, conversationHistory = []) {
       model: "openai/gpt-oss-20b",
       messages: messages,
       temperature: 0.7,
-      max_tokens: 500,
+      max_tokens: 150, // Reduced to enforce brevity
     });
 
     return {
