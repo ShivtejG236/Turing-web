@@ -441,4 +441,5 @@ jane.addEventListener('click', () => {
 
 sendButton.addEventListener('click', () => {
   newsPanel.classList.remove('active');
+  Messages.style.display('block')
 });
