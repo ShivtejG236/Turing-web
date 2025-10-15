@@ -476,6 +476,16 @@ canvas {
         top: 50%;
     }
 }
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        top: 50%;
+    }
+    to {
+        opacity: 0;
+        top: 60%;
+    }
+}
 @keyframes slideUp {
     from {
         transform: translateY(50px);
