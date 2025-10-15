@@ -15,6 +15,8 @@ let news_text = document.getElementsByClassName("news_text")[0]
 let weather_text = document.getElementsByClassName("weather_text")[0]
 let extensions_text = document.getElementsByClassName("extensions_text")[0]
 
+const profilePic = document.querySelector('.profile_pic');
+
 const Messages = document.getElementById('Messages');
 const messageInput = document.getElementById('messageInput');
 const sendButton = document.getElementById('sendButton');
@@ -36,6 +38,13 @@ const weatherClose = document.getElementById('weatherClose');
 const weatherContent = document.getElementById('weatherContent');
 const weatherButton = document.querySelector('.weather');
 
+const stocksPanel = document.getElementById('stocksPanel');
+const stocksClose = document.getElementById('stocksClose');
+const stocksButton = document.querySelector('.stocks');
+
+// const extensionsPanel = document.getElementById('extensionsPanel');
+// const extensionsClose = document.getElementById('extensionsClose');
+const extensionsButton = document.querySelector('.extensions');
 
 function resize() {
   w = canvas.width = innerWidth;
@@ -586,3 +595,60 @@ function displayWeather(weather) {
         </div>
     `;
 }
+
+
+stocksButton.addEventListener('click', () => {
+  stocksPanel.classList.add('active');
+  if (Messages.classList.contains('active')) {
+    Messages.style.display = 'none';
+  }
+  if (weatherPanel.classList.contains('active')) {
+    weatherPanel.style.display = 'none';
+  }
+  if (newsPanel.classList.contains('active')) {
+    newsPanel.style.display = 'none';
+  }
+});
+
+extensionsButton.addEventListener('click', () => {
+  stocksPanel.classList.add('active');
+  if (Messages.classList.contains('active')) {
+    Messages.style.display = 'none';
+  }
+  if (weatherPanel.classList.contains('active')) {
+    weatherPanel.style.display = 'none';
+  }
+  if (newsPanel.classList.contains('active')) {
+    newsPanel.style.display = 'none';
+  }
+});
+
+profilePic.addEventListener('click', () => {
+  stocksPanel.classList.add('active');
+  if (Messages.classList.contains('active')) {
+    Messages.style.display = 'none';
+  }
+  if (weatherPanel.classList.contains('active')) {
+    weatherPanel.style.display = 'none';
+  }
+  if (newsPanel.classList.contains('active')) {
+    newsPanel.style.display = 'none';
+  }
+});
+
+stocksClose.addEventListener('click', () => {
+  if (stocksPanel.classList.contains('active')) {
+    stocksPanel.style.display = 'none';
+  }
+  if (Messages.classList.contains('active')) {
+    Messages.style.display = 'block';
+  } else {
+    if (weatherPanel.classList.contains('active')) {
+      weatherPanel.style.display = 'block';
+    } else {
+      if (newsPanel.classList.contains('active')) {
+      newsPanel.style.display = 'block';
+      }
+    }
+  } 
+});
