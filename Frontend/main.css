@@ -300,10 +300,6 @@ canvas {
     z-index: 10;
     transition: transform 0.35s cubic-bezier(0.83, 0, 0.17, 1), box-shadow 0.35s cubic-bezier(0.83, 0, 0.17, 1);
 }
-.profile_pic_container {
-    margin: 5px 0 10px 0;
-    padding: 5px;
-}
 .profile_pic {
     height: 60px;
     width: 60px;
@@ -315,11 +311,15 @@ canvas {
     z-index: 11;
 }
 .profile_pic_text{
-    transform-origin: right center;
+    position: absolute;
+    top: 40%;
     right: 0;
+    transform: translateY(-50%);
+    padding: 5px;
+    margin: 1.5%;
+    border-radius: 10px;
+    z-index: 10;
     display: none;
-    position: fixed;
-    margin: 10px;
     color: rgba(240, 248, 255, 0.7);
     font-family: rale;
     font-size: 20px;
@@ -330,8 +330,6 @@ canvas {
     box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 4px 8px;
     border-radius: 5px;
     text-shadow: black 1px 1px 5px;
-    font-size: 20px;
-    margin-bottom: 5px;
 }
 .profile_logout {
     z-index: 11;
