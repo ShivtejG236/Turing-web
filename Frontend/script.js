@@ -367,25 +367,51 @@ newsButton.addEventListener('click', async () => {
 
 // Close news Panel
 newsClose.addEventListener('click', () => {
-  if (Messages.classList.contains('active')) {
-    Messages.style.display = 'block';
-  }
-  newsPanel.classList.remove('active');
+  newsPanel.style.animation = 'fadeOut 0.3s ease-out';
+  setTimeout(() => {
+    newsPanel.classList.remove('active');
+    newsPanel.style.animation = ''; // Reset animation
+    if (Messages.classList.contains('active')) {
+      Messages.style.display = 'block';
+    }
+  }, 300); // Match the animation duration
 });
 
 // Close on outside click
 newsPanel.addEventListener('click', (e) => {
     if (e.target === newsPanel) {
-        newsPanel.classList.remove('active');
+        newsPanel.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+            newsPanel.classList.remove('active');
+            newsPanel.style.animation = '';
+        }, 300);
     }
 });
 
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && (newsPanel.classList.contains('active') || stocksPanel.classList.contains('active') || weatherPanel.classList.contains('active'))) {
-        stocksPanel.classList.remove('active');
-        newsPanel.classList.remove('active');
-        weatherPanel.classList.remove('active');
+    if (e.key === 'Escape') {
+        if (newsPanel.classList.contains('active')) {
+            newsPanel.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                newsPanel.classList.remove('active');
+                newsPanel.style.animation = '';
+            }, 300);
+        }
+        if (weatherPanel.classList.contains('active')) {
+            weatherPanel.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                weatherPanel.classList.remove('active');
+                weatherPanel.style.animation = '';
+            }, 300);
+        }
+        if (stocksPanel.classList.contains('active')) {
+            stocksPanel.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                stocksPanel.classList.remove('active');
+                stocksPanel.style.animation = '';
+            }, 300);
+        }
     }
 });
 
@@ -505,16 +531,24 @@ weatherButton.addEventListener('click', async () => {
 
 // Close Weather Panel
 weatherClose.addEventListener('click', () => {
-  if (Messages.classList.contains('active')) {
-    Messages.style.display = 'block';
-  }
-  weatherPanel.classList.remove('active');
+  weatherPanel.style.animation = 'fadeOut 0.3s ease-out';
+  setTimeout(() => {
+    weatherPanel.classList.remove('active');
+    weatherPanel.style.animation = ''; // Reset animation
+    if (Messages.classList.contains('active')) {
+      Messages.style.display = 'block';
+    }
+  }, 300);
 });
 
 // Close on outside click
 weatherPanel.addEventListener('click', (e) => {
     if (e.target === weatherPanel) {
-        weatherPanel.classList.remove('active');
+        weatherPanel.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+            weatherPanel.classList.remove('active');
+            weatherPanel.style.animation = '';
+        }, 300);
     }
 });
 
@@ -644,16 +678,13 @@ profilePic.addEventListener('click', () => {
 });
 
 stocksClose.addEventListener('click', () => {
-  stocksPanel.classList.remove('active');
-  if (Messages.classList.contains('active')) {
-    Messages.style.display = 'block';
-  } else {
-    if (weatherPanel.classList.contains('active')) {
-      weatherPanel.style.display = 'block';
-    } else {
-      if (newsPanel.classList.contains('active')) {
-      newsPanel.style.display = 'block';
-      }
+  stocksPanel.style.animation = 'fadeOut 0.3s ease-out';
+  setTimeout(() => {
+    stocksPanel.classList.remove('active');
+    stocksPanel.style.animation = ''; // Reset animation
+    if (Messages.classList.contains('active')) {
+      Messages.style.display = 'block';
     }
-  } 
+  }, 300);
 });
+
