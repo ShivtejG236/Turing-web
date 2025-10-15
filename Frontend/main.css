@@ -832,7 +832,7 @@ canvas {
     z-index: 100;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-40%);
     width: 600px;
     max-width: 90%;
     background-color: transparent;
@@ -896,7 +896,7 @@ canvas {
 .weather_content {
     background: rgba(255,255,255,0.05);
     border-radius: 12px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: rgba(0,0,0,0.25) 1px 1px 5px 2px;
 }
 
