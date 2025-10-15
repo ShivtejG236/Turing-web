@@ -795,7 +795,7 @@ canvas {
 .news_article:hover {
     background: rgba(255, 255, 255, 0.08);
     border-left-color: rgba(100, 200, 255, 0.8);
-    scale: 0.9;
+    scale: 0.98;
     box-shadow: 0 5px 20px rgba(100, 150, 255, 0.2);
 }
 .news_article_image {
