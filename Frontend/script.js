@@ -8,6 +8,7 @@ let news = document.getElementsByClassName("news")[0]
 let weather = document.getElementsByClassName("weather")[0]
 let extensions = document.getElementsByClassName("extensions")[0]
 let profile_pic = document.getElementsByClassName("profile_pic")[0]
+let profile_pic_text = document.getElementsByClassName("profile_pic_text")[0]
 let profile_logout = document.getElementsByClassName("profile_logout")[0]
 let stocks_text = document.getElementsByClassName("stocks_text")[0]
 let news_text = document.getElementsByClassName("news_text")[0]
@@ -126,12 +127,14 @@ extensions.addEventListener("mouseout", ()=>{
 })
 
 profile_pic.addEventListener("mouseover", ()=>{
-        profile_pic.style.transform = "scale(0.98)";
-        profile_pic.style.boxShadow = "rgba(0, 0, 0, 0.5) 1px 1px 5px 2px";
+  profile_pic.style.transform = "scale(0.98)";
+  profile_pic.style.boxShadow = "rgba(0, 0, 0, 0.5) 1px 1px 5px 2px";
+  profile_pic_text.style.display = "block";
 })
 profile_pic.addEventListener("mouseout", ()=>{
-        profile_pic.style.transform = "scale(1)";
-        profile_pic.style.boxShadow = "rgba(0, 0, 0, 1) 1px 1px 5px 1.5px";
+  profile_pic.style.transform = "scale(1)";
+  profile_pic.style.boxShadow = "rgba(0, 0, 0, 1) 1px 1px 5px 1.5px";
+  profile_pic_text.style.display = "none";
 })
 
 profile_logout.addEventListener("mouseover", ()=>{
