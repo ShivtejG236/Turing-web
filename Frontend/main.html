@@ -124,4 +124,45 @@
 
 </body>
 <script src="script.js"></script>
+<script>
+    document.addEventListener('contextmenu', function (event) {
+        event.preventDefault(); // Prevents the default context menu
+        return false; // Ensures the event doesn't propagate further
+    });
+    
+    document.addEventListener('keydown', function(event) {
+      // Disable F12 Key
+      if (event.key === "F12") {
+        event.preventDefault();
+      }
+      // Disable Ctrl+Shift+I (Windows) or Cmd+Opt+I (macOS)
+      if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+        event.preventDefault();
+      }
+      if (event.metaKey && event.altKey && event.key === 'I') {
+        event.preventDefault();
+      }
+      // Disable Ctrl+Shift+C (Windows) or Cmd+Opt+C (macOS) for Element Inspector
+      if (event.ctrlKey && event.shiftKey && event.key === 'C') {
+        event.preventDefault();
+      }
+      if (event.metaKey && event.altKey && event.key === 'C') {
+        event.preventDefault();
+      }
+      // Disable Ctrl+Shift+J (Windows) or Cmd+Opt+J (macOS) for Console
+      if (event.ctrlKey && event.shiftKey && event.key === 'J') {
+        event.preventDefault();
+      }
+      if (event.metaKey && event.altKey && event.key === 'J') {
+        event.preventDefault();
+      }
+      // Disable Ctrl+U (Windows) or Cmd+U (macOS) for View Source
+      if (event.ctrlKey && event.key === 'U') {
+        event.preventDefault();
+      }
+      if (event.metaKey && event.key === 'U') {
+        event.preventDefault();
+      }
+    });
+</script>
 </html>
