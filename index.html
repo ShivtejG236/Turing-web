@@ -22,4 +22,10 @@
     </button>
   </div>
 </body>
+  <script>
+    document.addEventListener('contextmenu', function (event) {
+      event.preventDefault(); // Prevents the default context menu
+      return false; // Ensures the event doesn't propagate further
+    });
+  </script>
 </html>
