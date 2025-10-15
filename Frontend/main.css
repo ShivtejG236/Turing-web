@@ -310,6 +310,9 @@ canvas {
     cursor: pointer;
     z-index: 11;
 }
+.profile_pic:hover + .profile_pic_text {
+    display: block;
+}
 .profile_pic_text{
     transform-origin: right center;
     right: 0;
