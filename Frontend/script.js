@@ -317,6 +317,7 @@ async function sendMessage() {
 }
 
 sendButton.addEventListener('click', () => {
+  stocksPanel.classList.remove('active');
   newsPanel.classList.remove('active');
   weatherPanel.classList.remove('active');
   if (Messages.classList.contains('active')) {
@@ -331,6 +332,7 @@ messageInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
+      stocksPanel.classList.remove('active');
       newsPanel.classList.remove('active');
       weatherPanel.classList.remove('active');
       if (Messages.classList.contains('active')) {
@@ -356,6 +358,7 @@ newsButton.addEventListener('click', async () => {
     Messages.style.display = 'none';
   }
   newsPanel.classList.add('active');
+  stocksPanel.classList.remove('active');
   weatherPanel.classList.remove('active');
   currentNewsSource = 'tech';
   setActiveTab('tech');
@@ -379,8 +382,10 @@ newsPanel.addEventListener('click', (e) => {
 
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && newsPanel.classList.contains('active')) {
+    if (e.key === 'Escape' && (newsPanel.classList.contains('active') || stocksPanel.classList.contains('active') || weatherPanel.classList.contains('active'))) {
+        stocksPanel.classList.remove('active');
         newsPanel.classList.remove('active');
+        weatherPanel.classList.remove('active');
     }
 });
 
@@ -492,6 +497,7 @@ weatherButton.addEventListener('click', async () => {
   if (Messages.classList.contains('active')) {
     Messages.style.display = 'none';
   }
+  stocksPanel.classList.remove('active');
   newsPanel.classList.remove('active');
   weatherPanel.classList.add('active');
   await loadWeather();
@@ -515,6 +521,7 @@ weatherPanel.addEventListener('click', (e) => {
 // Close on Escape key (update existing Escape handler to include weather)
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && weatherPanel.classList.contains('active')) {
+        stocksPanel.classList.remove('active');
         weatherPanel.classList.remove('active');
     }
 });
