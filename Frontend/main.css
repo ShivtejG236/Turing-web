@@ -784,7 +784,7 @@ canvas {
     background: rgba(255,255,255,0.03);
     box-shadow: rgba(0,0,0,0.25) 1px 1x 5px 2x;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
     gap: 15px;
     align-content: start;
 }
@@ -802,7 +802,6 @@ canvas {
     flex-direction: row;
     align-items: flex-start;
     gap: 15px;
-    width: 45%;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     padding: 10px;
@@ -1144,4 +1143,12 @@ canvas {
     background: rgba(255, 68, 68, 0.1);
     transform: rotate(90deg);
     box-shadow: rgba(0,0,0,0.25) 1px 1px 5px 2px;
+}
+
+
+
+@media (max-width: 768px) {
+  .news_articles {
+    grid-template-columns: 1fr;
+  }
 }
