@@ -827,7 +827,7 @@ canvas {
 }
 .news_article_image img {
     width: 100%;
-    height: 90%;
+    height: auto;
     border-radius: 8px;
 }
 .news_article_text {
