@@ -799,7 +799,7 @@ canvas {
 
 .news_article {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: 15px;
     background: rgba(255, 255, 255, 0.05);
