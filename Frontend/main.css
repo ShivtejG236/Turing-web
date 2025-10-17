@@ -783,6 +783,10 @@ canvas {
     border-radius: 10px;
     background: rgba(255,255,255,0.03);
     box-shadow: rgba(0,0,0,0.25) 1px 1x 5px 2x;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    align-content: start;
 }
 
 .news_loading {
