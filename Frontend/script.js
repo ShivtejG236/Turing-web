@@ -462,15 +462,23 @@ function displayNews(articles) {
         });
         
         return `
-            <div class="news_article" onclick="window.open('${article.url}', '_blank')">
-                ${article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}" class="news_article_image" onerror="this.style.display='none'">` : ''}
-                <div class="news_article_title">${article.title}</div>
-                ${article.description ? `<div class="news_article_description">${article.description}</div>` : ''}
-                <div class="news_article_meta">
-                    <span class="news_article_author">${article.author || article.source || 'Unknown'}</span>
-                    <span class="news_article_date">${date}</span>
-                </div>
+          <div class="news_article" onclick="window.open('${article.url}', '_blank')">
+            ${article.urlToImage 
+              ? `<img src="${article.urlToImage}" alt="${article.title}" class="news_article_image" onerror="this.style.display='none'">`
+              : ''
+            }
+            <div class="news_article_text">
+              <div class="news_article_title">${article.title}</div>
+              ${article.description 
+                ? `<div class="news_article_description">${article.description}</div>` 
+                : ''
+              }
+              <div class="news_article_meta">
+                <span class="news_article_author">${article.author || article.source || 'Unknown'}</span>
+                <span class="news_article_date">${date}</span>
+              </div>
             </div>
+          </div>
         `;
     }).join('');
 }
