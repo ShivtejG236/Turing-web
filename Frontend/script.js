@@ -187,7 +187,7 @@ async function fetchMe() {
       return;
     }
 
-    const res = await fetch('https://turing-web-forked.onrender.com/api/me', {
+    const res = await fetch('https://turing-web-version.onrender.com/api/me', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function logout() {
   const token = localStorage.getItem('authToken');
   
-  await fetch('https://turing-web-forked.onrender.com/auth/logout', {
+  await fetch('https://turing-web-version.onrender.com/auth/logout', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -281,7 +281,7 @@ async function sendMessage() {
     try {
         const token = localStorage.getItem('authToken');
         
-        const response = await fetch('https://turing-web-forked.onrender.com/api/chat', {
+        const response = await fetch('https://turing-web-version.onrender.com/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -427,7 +427,7 @@ async function loadNews(source = 'tech') {
     try {
         const token = localStorage.getItem('authToken');
         
-        const response = await fetch(`https://turing-web-forked.onrender.com/api/news?source=${source}`, {
+        const response = await fetch(`https://turing-web-version.onrender.com/api/news?source=${source}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -583,7 +583,7 @@ async function loadWeather(location = 'New Delhi') {
     try {
         const token = localStorage.getItem('authToken');
         
-        const response = await fetch(`https://turing-web-forked.onrender.com/api/weather?location=${encodeURIComponent(location)}`, {
+        const response = await fetch(`https://turing-web-version.onrender.com/api/weather?location=${encodeURIComponent(location)}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
