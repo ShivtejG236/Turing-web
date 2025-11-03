@@ -37,7 +37,7 @@ export async function getChatCompletion(userMessage, conversationHistory = []) {
     ];
 
     const completion = await openai.chat.completions.create({
-      model: "openai/gpt-oss-20b",
+      model: "openai/gpt-oss-20b:free",
       messages: messages,
       temperature: 0.7,
       max_tokens: 500, // Reduced to enforce brevity
