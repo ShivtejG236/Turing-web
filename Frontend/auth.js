@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const googleBtn = document.getElementById("github-login");
+  const githubBtn = document.getElementById("github-login");
   githubBtn.addEventListener("click", () => {
     // Redirect user to backend Google OAuth endpoint
     window.location.href = "https://turing-web-version.onrender.com/auth/github";
