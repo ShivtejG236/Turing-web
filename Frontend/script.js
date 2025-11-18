@@ -877,7 +877,7 @@ async function populateCountryDropdown() {
         
         // Add a default placeholder option
         const defaultOption = document.createElement('option');
-        defaultOption.value = "";
+        defaultOption.value = "India";
         defaultOption.textContent = "Select a Country";
         defaultOption.disabled = true;
         defaultOption.selected = true;
