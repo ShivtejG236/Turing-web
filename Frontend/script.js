@@ -48,6 +48,13 @@ const stocksButton = document.querySelector('.stocks');
 // const extensionsClose = document.getElementById('extensionsClose');
 const extensionsButton = document.querySelector('.extensions');
 
+// Voice Recording Variables
+let mediaRecorder;
+let audioChunks = [];
+let isRecording = false;
+const micButton = document.querySelector('.input_mic');
+const micImage = document.querySelector('.mic_image');
+
 document.addEventListener('contextmenu', function (event) {
   event.preventDefault(); // Prevents the default context menu
   return false; // Ensures the event doesn't propagate further
@@ -247,14 +254,6 @@ document.querySelector('.profile_logout')?.addEventListener('click', logout);
 
 // Chat functionality
 
-
-input_mic.addEventListener("mouseover", ()=>{
-        input_mic.style.transform = "scale(0.98)";
-})
-input_mic.addEventListener("mouseout", ()=>{
-        input_mic.style.transform = "scale(1)";
-})
-
 function addMessage(content, type = 'user') {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${type}`;
@@ -330,6 +329,7 @@ async function sendMessage() {
         addMessage('Failed to send message. Please check your connection.', 'error');
     }
 }
+
 sendButton.addEventListener("mouseover", ()=>{
         sendButton.style.transform = "scale(0.98)";
 })
@@ -365,6 +365,138 @@ messageInput.addEventListener('keydown', (e) => {
 messageInput.addEventListener('input', function() {
     this.style.height = 'auto';
     this.style.height = Math.min(this.scrollHeight, 150) + 'px';
+});
+
+
+// Voice Recording Functions
+
+// Add visual feedback for recording state
+function updateMicUI(recording) {
+  if (recording) {
+    micButton.style.background = 'rgba(255, 100, 100, 0.3)';
+    micButton.style.boxShadow = 'rgba(255, 0, 0, 0.5) 0 0 15px 5px';
+    micImage.style.filter = 'brightness(1.5)';
+  } else {
+    micButton.style.background = 'rgba(255,255,255,0.1)';
+    micButton.style.boxShadow = 'rgba(0, 0, 0, 0.25) 1px 1px 5px 3px';
+    micImage.style.filter = 'brightness(1)';
+  }
+}
+
+// Start recording
+async function startRecording() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    
+    // Use webm format for better compatibility
+    const options = { mimeType: 'audio/webm' };
+    mediaRecorder = new MediaRecorder(stream, options);
+    
+    audioChunks = [];
+    
+    mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0) {
+        audioChunks.push(event.data);
+      }
+    };
+    
+    mediaRecorder.onstop = async () => {
+      const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+      await transcribeAudio(audioBlob);
+      
+      // Stop all audio tracks
+      stream.getTracks().forEach(track => track.stop());
+    };
+    
+    mediaRecorder.start();
+    isRecording = true;
+    updateMicUI(true);
+    
+    console.log('[VOICE] Recording started');
+  } catch (error) {
+    console.error('[VOICE] Error starting recording:', error);
+    alert('Could not access microphone. Please check permissions.');
+  }
+}
+
+// Stop recording
+function stopRecording() {
+  if (mediaRecorder && isRecording) {
+    mediaRecorder.stop();
+    isRecording = false;
+    updateMicUI(false);
+    console.log('[VOICE] Recording stopped');
+  }
+}
+
+// Transcribe audio using backend API
+async function transcribeAudio(audioBlob) {
+  try {
+    // Show loading state in text box
+    messageInput.value = 'Transcribing...';
+    messageInput.disabled = true;
+    
+    const token = localStorage.getItem('authToken');
+    
+    // Create FormData and append the audio file
+    const formData = new FormData();
+    formData.append('audio', audioBlob, 'recording.webm');
+    
+    const response = await fetch('https://turing-web-version.onrender.com/api/transcribe', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: formData
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      
+      // Put transcribed text in the text box
+      messageInput.value = data.text;
+      messageInput.disabled = false;
+      messageInput.focus();
+      
+      // Automatically send the message
+      await sendMessage();
+      
+      console.log('[VOICE] Transcription successful:', data.text);
+    } else {
+      const error = await response.json();
+      console.error('[VOICE] Transcription failed:', error);
+      messageInput.value = '';
+      messageInput.disabled = false;
+      addMessage('Failed to transcribe audio. Please try again.', 'error');
+    }
+  } catch (error) {
+    console.error('[VOICE] Error during transcription:', error);
+    messageInput.value = '';
+    messageInput.disabled = false;
+    addMessage('Network error during transcription. Please try again.', 'error');
+  }
+}
+
+// Toggle recording on mic button click
+micButton.addEventListener('click', () => {
+  if (isRecording) {
+    stopRecording();
+  } else {
+    startRecording();
+  }
+});
+
+// Add hover effects for mic button
+micButton.addEventListener('mouseover', () => {
+  if (!isRecording) {
+    micButton.style.transform = 'scale(0.98)';
+  }
+});
+
+micButton.addEventListener('mouseout', () => {
+  if (!isRecording) {
+    micButton.style.transform = 'scale(1)';
+  }
 });
 
 
@@ -431,6 +563,10 @@ document.addEventListener('keydown', (e) => {
                 stocksPanel.classList.remove('active');
                 stocksPanel.style.animation = '';
             }, 300);
+        }
+        // Stop recording if active
+        if (isRecording) {
+            stopRecording();
         }
     }
 });
