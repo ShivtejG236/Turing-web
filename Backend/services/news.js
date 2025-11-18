@@ -1,4 +1,4 @@
-export async function getTopHeadlines(country = 'np') {
+export async function getTopHeadlines(country = 'in') {
   try {
     const apiKey = process.env.NEWS_API_KEY;
     
