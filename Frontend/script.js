@@ -15,6 +15,8 @@ let news_text = document.getElementsByClassName("news_text")[0]
 let weather_text = document.getElementsByClassName("weather_text")[0]
 let extensions_text = document.getElementsByClassName("extensions_text")[0]
 
+let input_mic = document.getElementsByClassName("input_mic")[0]
+
 const profilePic = document.querySelector('.profile_pic');
 
 const Messages = document.getElementById('Messages');
@@ -245,6 +247,13 @@ document.querySelector('.profile_logout')?.addEventListener('click', logout);
 
 // Chat functionality
 
+
+input_mic.addEventListener("mouseover", ()=>{
+        input_mic.style.transform = "scale(0.98)";
+})
+input_mic.addEventListener("mouseout", ()=>{
+        input_mic.style.transform = "scale(1)";
+})
 
 function addMessage(content, type = 'user') {
     const messageDiv = document.createElement('div');
