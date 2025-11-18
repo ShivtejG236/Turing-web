@@ -512,6 +512,7 @@ newsButton.addEventListener('click', async () => {
   newsPanel.classList.add('active');
   stocksPanel.classList.remove('active');
   weatherPanel.classList.remove('active');
+  countrySelect.style.display = 'block';
   currentNewsSource = 'tech';
   setActiveTab('tech');
   await loadNews('tech');
@@ -520,6 +521,7 @@ newsButton.addEventListener('click', async () => {
 // Close news Panel
 newsClose.addEventListener('click', () => {
   newsPanel.style.animation = 'fadeOut 0.3s ease-out';
+  countrySelect.style.display = 'none';
   setTimeout(() => {
     newsPanel.classList.remove('active');
     newsPanel.style.animation = ''; // Reset animation
