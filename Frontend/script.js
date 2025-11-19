@@ -28,7 +28,7 @@ const newsPanel = document.getElementById('newsPanel');
 const newsClose = document.getElementById('newsClose');
 const newsArticlesContainer = document.getElementById('newsArticles');
 const newsButton = document.querySelector('.news');
-let currentCountry = 'np'; // Default to Nepal
+let currentCountry = 'in'; // Default to Nepal
 const countrySelect = document.getElementById('country');
 
 const weatherPanel = document.getElementById('weatherPanel');
