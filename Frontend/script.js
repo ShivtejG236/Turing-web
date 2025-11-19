@@ -590,6 +590,42 @@ countrySelect.addEventListener('change', async (e) => {
   await loadNews(currentCountry);
 });
 
+// Add this after the existing country dropdown event listener (around line 480)
+
+// Tech button click handler - refreshes news for selected country
+const techButton = document.querySelector('.tech');
+techButton.addEventListener('click', async () => {
+  console.log('[NEWS] Tech button clicked - refreshing news for country:', currentCountry);
+  await loadNews(currentCountry);
+});
+
+// Also update these other buttons to refresh news (optional - removes the existing broken functionality)
+const appleButton = document.querySelector('.apple');
+const teslaButton = document.querySelector('.tesla');
+const businessButton = document.querySelector('.business');
+const janeButton = document.querySelector('.jane');
+
+// Remove these if you want ONLY the Tech button to work, or update them all to refresh news
+appleButton.addEventListener('click', async () => {
+  console.log('[NEWS] Apple button clicked - refreshing news');
+  await loadNews(currentCountry);
+});
+
+teslaButton.addEventListener('click', async () => {
+  console.log('[NEWS] Tesla button clicked - refreshing news');
+  await loadNews(currentCountry);
+});
+
+businessButton.addEventListener('click', async () => {
+  console.log('[NEWS] Business button clicked - refreshing news');
+  await loadNews(currentCountry);
+});
+
+janeButton.addEventListener('click', async () => {
+  console.log('[NEWS] Jane button clicked - refreshing news');
+  await loadNews(currentCountry);
+});
+
 
 // Weather Panel functionality
 
