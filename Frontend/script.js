@@ -566,7 +566,7 @@ function displayNews(articles) {
             : ''
           }
           <div class="news_article_meta">
-            <span class="news_article_author">${article.author || article.source || 'Unknown'}</span>
+            <span class="news_article_author">${article.author || article.sourceName || 'Unknown'}</span>
             <span class="news_article_date">${date}</span>
           </div>
         </div>
