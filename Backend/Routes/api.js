@@ -73,11 +73,12 @@ router.post('/transcribe', requireAuth, upload.single('audio'), async (req, res)
   }
 });
 
+// Updated news route - now uses country parameter instead of source
 router.get('/news', requireAuth, async (req, res) => {
   try {
-    const source = req.query.source || 'tech';
-    console.log(`[NEWS] Fetching top headlines for source: ${source}`);
-    const result = await getTopHeadlines(source);
+    const country = req.query.country || 'in'; // Default to India
+    console.log(`[NEWS] Fetching top headlines for country: ${country}`);
+    const result = await getTopHeadlines(country);
     
     if (result.success) {
       res.json({ articles: result.articles });
@@ -89,7 +90,6 @@ router.get('/news', requireAuth, async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch news' });
   }
 });
-
 
 router.get('/weather', requireAuth, async (req, res) => {
   try {
